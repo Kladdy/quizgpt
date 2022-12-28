@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { quizSubjects } from '../common/subjects'
 import { Language, languages_list } from '../common/languages'
 import LanguageCombo from '../components/LanguageCombo'
@@ -25,8 +25,11 @@ export default function Home() {
   const [amountOfQuestions, setAmountOfQuestions] = React.useState(10);
   const [questions, setQuestions] = React.useState<Question[]>([]);
 
-  const [randomQuizSubject, setRandomQuizSubject] = React.useState(quizSubjects[Math.floor(Math.random() * quizSubjects.length)]);
+  const [randomQuizSubject, setRandomQuizSubject] = React.useState<string | undefined>(undefined);
 
+  useEffect(() => {
+    setRandomQuizSubject(quizSubjects[Math.floor(Math.random() * quizSubjects.length)]);
+  }, []);
 
   return (
     <>
