@@ -1,0 +1,22 @@
+export const quizSubjects = [
+  "JavaScript programming",
+  "British literature",
+  "Biology",
+  "Geometry",
+  "Impressionist art",
+  "Classical music",
+  "African geography",
+  "Baseball",
+  "US presidential elections",
+  "1990s pop music",
+  "Italian cuisine",
+  "Plants and flowers",
+  "Exercise and nutrition",
+  "Marvel Cinematic Universe",
+  "Haute couture",
+  "Latin language",
+  "Artificial intelligence",
+  "Stock market investing",
+  "Personality psychology",
+  "Existentialism"
+];

@@ -1,7 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
@@ -257,7 +257,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   .vercelLogo {
     filter: invert(1);
   }
