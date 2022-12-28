@@ -242,7 +242,7 @@ export default function Home() {
             <InformationCircleIcon className="flex-none animate-pulse mr-1 h-5 w-5 text-gray-500" aria-hidden="true" />
             <span>
               <p className='text-sm text-gray-500'>{"Upload this quiz to Kahoot by clicking 'Add\u00A0question' and 'Import\u00A0spreadsheet' at"}</p>
-              <a className='text-sm text-gray-500' href='https://create.kahoot.it/creator' target={"_blank"}>https://create.kahoot.it/creator</a>
+              <a className='text-sm text-gray-500' href='https://create.kahoot.it/creator' target="_blank" rel="noopener noreferrer">https://create.kahoot.it/creator</a>
             </span>
           </div>
 
@@ -271,7 +271,7 @@ export default function Home() {
         <div className='mt-10 mb-4 grid grid-cols-1 justify-items-center'>
           {/* Copyright Sigfrid Stjärholm 2022, link to Github */}
           <p className='text-sm text-gray-500'>© {new Date().getFullYear()} Sigfrid Stjärnholm</p>
-          <a className='text-sm text-gray-500' href='https://github.com/Kladdy'>github.com/Kladdy</a>
+          <a className='text-sm text-gray-500' href='https://github.com/Kladdy' target="_blank" rel="noopener noreferrer">github.com/Kladdy</a>
         </div>
 
       </main>
