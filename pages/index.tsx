@@ -268,6 +268,12 @@ export default function Home() {
         </>
         }
 
+        <div className='mt-10 mb-4 grid grid-cols-1 justify-items-center'>
+          {/* Copyright Sigfrid Stjärholm 2022, link to Github */}
+          <p className='text-sm text-gray-500'>© {new Date().getFullYear()} Sigfrid Stjärnholm</p>
+          <a className='text-sm text-gray-500' href='https://github.com/Kladdy'>github.com/Kladdy</a>
+        </div>
+
       </main>
     </>
   )
