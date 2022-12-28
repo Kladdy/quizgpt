@@ -6,8 +6,12 @@ import React, { useEffect } from 'react'
 import { quizSubjects } from '../common/subjects'
 import { Language, languages_list } from '../common/languages'
 import LanguageCombo from '../components/LanguageCombo'
-import { SparklesIcon } from '@heroicons/react/24/outline'
+import { ArrowPathIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import { Question } from './api/questions'
+
+function classNames(...classes: (string | boolean)[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export interface QuizForm {
   email: string
@@ -24,6 +28,7 @@ export default function Home() {
   const [language, setLanguage] = React.useState<Language>(languages_list.find(l => l.code === 'en')!)
   const [amountOfQuestions, setAmountOfQuestions] = React.useState(10);
   const [questions, setQuestions] = React.useState<Question[]>([]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const [randomQuizSubject, setRandomQuizSubject] = React.useState<string | undefined>(undefined);
 
@@ -122,8 +127,14 @@ export default function Home() {
 
           {!!email && !!password && !!subject && !!amountOfQuestions && !!language && <button
             type="button"
-            className="mt-4 justify-center inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className={classNames(
+              !isLoading ? "bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" : "bg-gray-500",
+              "mt-4 justify-center inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm"
+            )}
+            disabled={isLoading}
             onClick={() => {
+              console.log('Generating questions...')
+              setIsLoading(true)
               fetch('/api/questions', {
                 method: 'POST',
                 headers: {
@@ -136,10 +147,13 @@ export default function Home() {
                   console.log(data)
                   setQuestions(data)
                 })
+                .finally(() => setIsLoading(false))
             }}
           >
-            Generate questions
-            <SparklesIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
+            {!isLoading && "Generate questions"}
+            {isLoading && "Generating questions..."}
+            {!isLoading && <SparklesIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />}
+            {isLoading && <ArrowPathIcon className="animate-spin ml-2 -mr-1 h-5 w-5" aria-hidden="true" />}
           </button>}
 
         </div>
