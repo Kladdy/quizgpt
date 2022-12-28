@@ -7,15 +7,23 @@ import { quizSubjects } from '../common/subjects'
 import { Language, languages_list } from '../common/languages'
 import LanguageCombo from '../components/LanguageCombo'
 import { SparklesIcon } from '@heroicons/react/24/outline'
+import { Question } from './api/questions'
 
-const inter = Inter({ subsets: ['latin'] })
+export interface QuizForm {
+  email: string
+  password: string
+  subject: string
+  amountOfQuestions: number
+  language: Language
+}
 
 export default function Home() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [subject, setSubject] = React.useState("");
-  const [language, setLanguage] = React.useState<Language | null>(languages_list.find(l => l.code === 'en')!)
+  const [language, setLanguage] = React.useState<Language>(languages_list.find(l => l.code === 'en')!)
   const [amountOfQuestions, setAmountOfQuestions] = React.useState(10);
+  const [questions, setQuestions] = React.useState<Question[]>([]);
 
   const [randomQuizSubject, setRandomQuizSubject] = React.useState(quizSubjects[Math.floor(Math.random() * quizSubjects.length)]);
 
@@ -109,14 +117,27 @@ export default function Home() {
             setSelectedLanguage={setLanguage}
           />
 
-        <button
-          type="button"
-          className="mt-4 justify-center inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          onClick={() => {}}
-        >
-          Generate questions
-          <SparklesIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
-        </button>
+          {!!email && !!password && !!subject && !!amountOfQuestions && !!language && <button
+            type="button"
+            className="mt-4 justify-center inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            onClick={() => {
+              fetch('/api/questions', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email, password, subject, amountOfQuestions, language})
+              })
+                .then(response => response.json())
+                .then(data => {
+                  console.log(data)
+                  setQuestions(data)
+                })
+            }}
+          >
+            Generate questions
+            <SparklesIcon className="ml-2 -mr-1 h-5 w-5" aria-hidden="true" />
+          </button>}
 
         </div>
 

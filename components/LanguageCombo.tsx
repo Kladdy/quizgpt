@@ -23,7 +23,7 @@ function classNames(...classes: (string | boolean)[]) {
 
 interface LanguageComboInterface {
   selectedLanguage: Language | null
-  setSelectedLanguage: (language: Language | null) => void
+  setSelectedLanguage: (language: Language) => void
 }
 
 export default function LanguageCombo({ selectedLanguage, setSelectedLanguage }: LanguageComboInterface) {
