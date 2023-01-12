@@ -33,18 +33,17 @@ export default async function handler(
 
   console.log("Sending message...")
   const message = `I want to make a quiz about ${form.subject}.
-    I want ${form.amountOfQuestions} questions, with 4 answers per question.
-    The questions should be in ${form.language.name.split(" - ")[0]}.
-    Please give me 1 correct answer for each question.
-    The question can not be longer than 120 characters, and the answers can not be longer than 75 characters.
-    Format: Question|Answer1|Answer2|Answer3|Answer4
-    A # mark indicates the correct answer.
-    Each question and its answers should be on a single line.
-    Example reponse: 
-    "$1. What is the capital of France?|Paris#|London|Berlin|Madrid
-    $2. How many letters are in the alphabet?|30|24|28|26#"
-    Before each question, please write the question number with a $ sign in front.
-  `
+I want ${form.amountOfQuestions} questions, with 4 answers per question.
+The questions should be in ${form.language.name.split(" - ")[0]}.
+Please give me 1 correct answer for each question.
+The question can not be longer than 120 characters, and the answers can not be longer than 75 characters.
+Format: Question|Answer1|Answer2|Answer3|Answer4
+A # mark indicates the correct answer.
+Each question and its answers should be on a single line.
+Example reponse: 
+"$1. What is the capital of France?|Paris#|London|Berlin|Madrid
+$2. How many letters are in the alphabet?|30|24|28|26#"
+Before each question, please write the question number with a $ sign in front.`
   console.log(message)
   const result = await api.sendMessage(message)
 
@@ -75,6 +74,7 @@ export default async function handler(
       })
     }
   }
-
-  res.status(200).json({questions: questions, requestMessage: message, responseMessage: result.response})
+  const r = {questions: questions, requestMessage: message, responseMessage: result.response}
+  console.log(r)
+  res.status(200).json(r)
 }
