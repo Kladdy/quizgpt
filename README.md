@@ -30,14 +30,3 @@ Then you navigate to [http://localhost:3000](http://localhost:3000).
 ## Credits
 
 Thanks to [Travis Fischer](transitive-bullshit) for creating an awesome [unofficial ChatGPT Node.js client](https://www.npmjs.com/package/chatgpt)!
-
-<style>
-h1 {
-font-weight: 800;
-color: transparent;
-font-size: 4.5rem;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-image: linear-gradient(to right, #9b51e0, #ff4f81);
-}
-</style>
