@@ -32,8 +32,7 @@ export default async function handler(
   await api.initSession()
 
   console.log("Sending message...")
-  const message = `
-    I want to make a quiz about ${form.subject}.
+  const message = `I want to make a quiz about ${form.subject}.
     I want ${form.amountOfQuestions} questions, with 4 answers per question.
     The questions should be in ${form.language.name.split(" - ")[0]}.
     Please give me 1 correct answer for each question.
@@ -42,18 +41,20 @@ export default async function handler(
     A # mark indicates the correct answer.
     Each question and its answers should be on a single line.
     Example reponse: 
-    "What is the capital of France?|Paris#|London|Berlin|Madrid
-    How many letters are in the alphabet?|30|24|28|26#"
+    "$1. What is the capital of France?|Paris#|London|Berlin|Madrid
+    $2. How many letters are in the alphabet?|30|24|28|26#"
     Before each question, please write the question number with a $ sign in front.
   `
+  console.log(message)
   const result = await api.sendMessage(message)
 
   console.log("Parsing result...")
   const questions: Question[] = []
   for (const line of result.response.split("\n")) {
-    if (line.startsWith("$")) {
+    if (line.startsWith("$") || line.match(/^\d/)) { // If line starts with a $ or a number 
       const line_split = line.split("|")
-      const question = line_split[0].split(". ")[1] // Remove the question number
+      let [first, ...rest] = line_split[0].split(". ")
+      const question = rest.join(". ") // Remove the question number
       const answers = line_split.slice(1)
       const correctAnswerPositions = answers.map((a, i) => a.endsWith("#") ? i : -1).filter(i => i !== -1)
 
