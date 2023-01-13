@@ -225,7 +225,7 @@ export default function Home() {
                     })
                   }
                   utils.sheet_add_json(wb.Sheets[wb.SheetNames[0]], questionList, {origin: "B9", skipHeader: true})
-                  writeFile(wb, `KahootQuizTemplate_${subject}_${amountOfQuestions}-questions-${language.name.split(" - ")[0]}.xlsx`)
+                  writeFile(wb, `KahootQuizTemplate_${subject.substring(0, 10)}_${amountOfQuestions}-questions-${language.name.split(" - ")[0]}.xlsx`)
                 })
                 .finally(() => setIsExporting(false))
               

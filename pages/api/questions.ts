@@ -53,9 +53,9 @@ Before each question, please write the question number with a $ sign in front.`
     if (line.startsWith("$") || line.match(/^\d/)) { // If line starts with a $ or a number 
       const line_split = line.split("|")
       let [first, ...rest] = line_split[0].split(". ")
-      const question = rest.join(". ") // Remove the question number
-      const answers = line_split.slice(1)
-      const correctAnswerPositions = answers.map((a, i) => a.endsWith("#") ? i : -1).filter(i => i !== -1)
+      const question = rest.join(". ").trim() // Remove the question number
+      const answers = line_split.slice(1).map(x => x.trim())
+      const correctAnswerPositions = answers.map((a, i) => a.includes("#") ? i : -1).filter(i => i !== -1)
 
       // Shuffle the answers around and adjust the correct answer positions accordingly
       for (let i = answers.length - 1; i > 0; i--) {
