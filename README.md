@@ -5,7 +5,7 @@ QuizGPT helps you to create Kahoot quizzes using ChatGPT.
 
 ## Demo
 
-You can view a demo of QuizGPT on [YouTube](https://youtu.be/9dmxrIVP4Fs).
+You can view a demo of QuizGPT on [YouTube](https://www.youtube.com/watch?v=9dmxrIVP4Fs).
 
 ## Getting Started
 
