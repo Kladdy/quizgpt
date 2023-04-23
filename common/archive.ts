@@ -20,9 +20,9 @@ export function archive(resultType: ResultType) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Archive success:', data);
+      console.log('Archive success: ', data);
     })
     .catch((error) => {
-      console.error('Archive error:', error);
+      console.error('Archive error: ', error);
     });
 }
