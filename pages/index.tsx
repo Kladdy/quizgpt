@@ -7,7 +7,7 @@ import { quizSubjects } from '../common/subjects'
 import { Language, languages_list } from '../common/languages'
 import LanguageCombo from '../components/LanguageCombo'
 import { ArrowDownTrayIcon, ArrowPathIcon, CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, SparklesIcon, XCircleIcon } from '@heroicons/react/24/outline'
-import { QueryQuestionsResponse, Question } from './api/questions'
+import { QueryQuestionsResponse, Question, ResultType } from './api/questions'
 import { read, utils, writeFile } from 'xlsx';
 import TimeLimitSelect from '../components/TimeLimitSelect'
 
@@ -16,16 +16,12 @@ function classNames(...classes: (string | boolean)[]) {
 }
 
 export interface QuizForm {
-  email: string
-  password: string
   subject: string
   amountOfQuestions: number
   language: Language
 }
 
 export default function Home() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
   const [subject, setSubject] = React.useState("");
   const [language, setLanguage] = React.useState<Language>(languages_list.find(l => l.code === 'en')!)
   const [amountOfQuestions, setAmountOfQuestions] = React.useState<number | null | undefined>(10);
@@ -42,54 +38,22 @@ export default function Home() {
     setRandomQuizSubject(quizSubjects[Math.floor(Math.random() * quizSubjects.length)]);
   }, []);
 
+  
+
   return (
     <>
       <Head>
         <title>QuizGPT</title>
-        <meta name="description" content="Generate Kahoot quizes using ChatGPT" />
+        <meta name="description" content="Generate Kahoot quizzes using ChatGPT" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
         
         <h1 className='font-extrabold text-transparent text-6xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>QuizGPT</h1>
-        <p className='mb-4'>Create Kahoot quizes in no time</p>
+        <p className='mb-4'>Create Kahoot quizzes in no time</p>
 
         <div className='grid gap-y-2'>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              OpenAI Email
-            </label>
-            <div className="mt-1">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                autoComplete="off"
-                placeholder='you@example.com'
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              OpenAI Password
-            </label>
-            <div className="mt-1">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                autoComplete="off"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-              />
-            </div>
-          </div>
 
           <div>
             <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
@@ -136,7 +100,7 @@ export default function Home() {
             setSelectedLanguage={setLanguage}
           />
 
-          {!!email && !!password && !!subject && !!amountOfQuestions && !!language && 
+          {!!subject && !!amountOfQuestions && !!language && 
           <>
             <button
               type="button"
@@ -154,7 +118,7 @@ export default function Home() {
                   headers: {
                     'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify({email, password, subject, amountOfQuestions, language})
+                  body: JSON.stringify({subject, amountOfQuestions, language})
                 })
                   .then(response => response.json())
                   .then((data: QueryQuestionsResponse) => {
@@ -269,7 +233,7 @@ export default function Home() {
         }
 
         <div className='mt-10 mb-4 grid grid-cols-1 justify-items-center'>
-          {/* Copyright Sigfrid Stjärholm 2022, link to Github */}
+          {/* Copyright Sigfrid Stjärnholm 2022, link to Github */}
           <p className='text-sm text-gray-500'>© {new Date().getFullYear()} Sigfrid Stjärnholm</p>
           <a className='text-sm text-gray-500' href='https://github.com/Kladdy' target="_blank" rel="noopener noreferrer">github.com/Kladdy</a>
         </div>
