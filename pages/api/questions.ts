@@ -103,7 +103,7 @@ $2. How many letters are in the english alphabet?|30|24|28|26#"`
   console.log(r)
 
   // Send result to archive api
-  archive(r)
+  await archive(r)
 
   res.status(200).json(r)
 }
