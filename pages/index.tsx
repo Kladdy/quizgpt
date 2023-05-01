@@ -210,6 +210,13 @@ export default function Home() {
             </span>
           </div>
 
+          <div className='mt-4 w-full max-w-xs flex flex-row items-center'>
+            <InformationCircleIcon className="flex-none animate-pulse mr-1 h-5 w-5 text-orange-600" aria-hidden="true" />
+            <span>
+              <p className='text-sm text-orange-600'>{"Remember that ChatGPT is incorrect very often! Please double check the answers. Also, ChatGPT does not know anything about what has happened after September 2021."}</p>
+            </span>
+          </div>
+
           <div className='mt-1 w-full max-w-xs'>
             {queryResponse.questions.map((question, questionIndex) => (
               <div key={question.question} className='mt-4 p-4 bg-slate-200 rounded-md border border-indigo-400'>
