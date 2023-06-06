@@ -56,7 +56,7 @@ export default function Home() {
         <div className='grid gap-y-2'>
 
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="subject" className="block text-sm font-medium text-gray-500">
               Subject
             </label>
             <div className="mt-1">
@@ -64,7 +64,7 @@ export default function Home() {
                 type="text"
                 name="subject"
                 id="subject"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                className="text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 autoComplete="off"
                 placeholder={randomQuizSubject}
                 value={subject}
@@ -74,7 +74,7 @@ export default function Home() {
           </div>
 
           <div>
-            <label htmlFor="amountOfQuestions" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="amountOfQuestions" className="block text-sm font-medium text-gray-500">
               Amount of questions
             </label>
             <div className="mt-1">
@@ -82,7 +82,7 @@ export default function Home() {
                 type="number"
                 name="amountOfQuestions"
                 id="amountOfQuestions"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                className="text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 autoComplete="off"
                 value={amountOfQuestions || ''}
                 onChange={e => setAmountOfQuestions(parseInt(e.target.value))}
@@ -220,13 +220,13 @@ export default function Home() {
           <div className='mt-1 w-full max-w-xs'>
             {queryResponse.questions.map((question, questionIndex) => (
               <div key={question.question} className='mt-4 p-4 bg-slate-200 rounded-md border border-indigo-400'>
-                <h2 className='font-bold text-sm'>{questionIndex+1}. {question.question}</h2>
+                <h2 className='text-black font-bold text-sm'>{questionIndex+1}. {question.question}</h2>
                 <ul className='grid grid-cols-1 gap-2 mt-2'>
                   {question.answers.map((answer, answerIndex) => {
                     return <li key={answer} className='p-2 bg-slate-100 rounded-md flex flex-row items-center'>
                       {question.correctAnswerPositions.includes(answerIndex) && <CheckCircleIcon className="flex-none mr-2 -ml-1 h-5 w-5 text-green-500" aria-hidden="true" />}
                       {!question.correctAnswerPositions.includes(answerIndex) && <XCircleIcon className="flex-none mr-2 -ml-1 h-5 w-5 text-red-500" aria-hidden="true" />}
-                      <span className=''>{answer} </span>
+                      <span className='text-black '>{answer} </span>
                     </li>
                   })}
                 </ul>

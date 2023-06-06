@@ -38,11 +38,11 @@ export default function LanguageCombo({ selectedLanguage, setSelectedLanguage }:
 
   return (
     <Combobox as="div" value={selectedLanguage} onChange={setSelectedLanguage}>
-      <Combobox.Label className="block text-sm font-medium text-gray-700">Language</Combobox.Label>
+      <Combobox.Label className="block text-sm font-medium text-gray-500">Language</Combobox.Label>
       <div className="relative mt-1">
         <Combobox.Input
           autoComplete="off"
-          className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+          className="text-black w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(language: Language) => language?.name}
         />
