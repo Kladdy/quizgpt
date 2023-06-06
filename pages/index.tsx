@@ -226,7 +226,7 @@ export default function Home() {
                     return <li key={answer} className='p-2 bg-slate-100 rounded-md flex flex-row items-center'>
                       {question.correctAnswerPositions.includes(answerIndex) && <CheckCircleIcon className="flex-none mr-2 -ml-1 h-5 w-5 text-green-500" aria-hidden="true" />}
                       {!question.correctAnswerPositions.includes(answerIndex) && <XCircleIcon className="flex-none mr-2 -ml-1 h-5 w-5 text-red-500" aria-hidden="true" />}
-                      <span className='text-black '>{answer} </span>
+                      <span className='text-black'>{answer} </span>
                     </li>
                   })}
                 </ul>
